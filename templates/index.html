@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot FURIA</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <div class="chat-container">
+    <div class="chat-header">
+      <h1>FURIA Chatbot</h1>
+      <p>Seu assistente para ficar por dentro do time!</p>
+    </div>
+
+    <div id="chat-box" class="chat-box">
+      <!-- As mensagens vão aparecer aqui -->
+    </div>
+
+    <form id="chat-form" class="chat-form">
+      <input type="text" id="user-input" placeholder="Digite sua pergunta..." autocomplete="off" required />
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+<script>
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('user-input');
+  const chatBox = document.getElementById('chat-box');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const userMessage = input.value.trim();
+    if (!userMessage) return;
+
+    addMessage('Você', userMessage);
+
+    const response = await fetch(`/chat?mensagem=${encodeURIComponent(userMessage)}`);
+    const data = await response.json();
+
+    addMessage('FURIA Bot', data.resposta);
+
+    input.value = '';
+  });
+
+  function addMessage(sender, text) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${text}`;
+    chatBox.appendChild(messageElement);
+    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+  }
+</script>
+
+</body>
+</html>

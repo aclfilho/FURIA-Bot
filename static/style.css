@@ -1,0 +1,102 @@
+/* Fundo geral */
+body {
+    background-color: #0e0e0e;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container do chat */
+.chat-container {
+    background: #1a1a1a;
+    border: 2px solid #4c4c4c;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+/* Cabeçalho */
+.chat-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.chat-header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #00ffea;
+}
+
+.chat-header p {
+    font-size: 14px;
+    color: #aaaaaa;
+}
+
+/* Área das mensagens */
+.chat-box {
+    background: #121212;
+    padding: 15px;
+    border-radius: 8px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+}
+
+/* Cada mensagem */
+.message {
+    margin-bottom: 12px;
+    padding: 8px 10px;
+    background: #262626;
+    border-radius: 5px;
+}
+
+/* Nome dos remetentes */
+.message strong {
+    color: #00ffea;
+}
+
+/* Formulário */
+.chat-form {
+    display: flex;
+}
+
+.chat-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    background: #222;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.chat-form button {
+    background-color: #00ffea;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chat-form button:hover {
+    background-color: #00b8a9;
+}
+
+/* Scrollbar estilizado */
+.chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
