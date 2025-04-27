@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Chatbot FURIA</title>
-  <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <title>FURIA ChatBot</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+    <div class="container">
+        <header class="header">
+            <img src="/static/furia_logo.png" alt="FURIA Logo" class="logo pulse-logo">
+            <h1>FURIA ChatBot</h1>
+            <p>Conecte-se com o espírito da FURIA</p>
+        </header>
 
-  <div class="chat-container">
-    <div class="chat-header">
-      <h1>FURIA Chatbot</h1>
-      <p>Seu assistente para ficar por dentro do time!</p>
+        <div class="chat-box" id="chat-box">
+            <div class="message bot">Olá, eu sou o bot da FURIA! Como posso te ajudar hoje?</div>
+        </div>
+
+        <form id="chat-form">
+            <input type="text" id="message" placeholder="Digite sua mensagem..." autocomplete="off" required>
+            <button type="submit">Enviar</button>
+        </form>
     </div>
 
-    <div id="chat-box" class="chat-box">
-      <!-- As mensagens vão aparecer aqui -->
-    </div>
+    <script>
+        const form = document.getElementById('chat-form');
+        const messageInput = document.getElementById('message');
+        const chatBox = document.getElementById('chat-box');
 
-    <form id="chat-form" class="chat-form">
-      <input type="text" id="user-input" placeholder="Digite sua pergunta..." autocomplete="off" required />
-      <button type="submit">Enviar</button>
-    </form>
-  </div>
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userMessage = messageInput.value.trim();
+            if (!userMessage) return;
 
-<script>
-  const form = document.getElementById('chat-form');
-  const input = document.getElementById('user-input');
-  const chatBox = document.getElementById('chat-box');
+            // Mostrar mensagem do usuário
+            chatBox.innerHTML += `<div class="message user">${userMessage}</div>`;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const userMessage = input.value.trim();
-    if (!userMessage) return;
+            // Enviar para o backend
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `message=${encodeURIComponent(userMessage)}`
+            });
 
-    addMessage('Você', userMessage);
+            const data = await response.json();
 
-    const response = await fetch(`/chat?mensagem=${encodeURIComponent(userMessage)}`);
-    const data = await response.json();
+            // Mostrar resposta do bot
+            chatBox.innerHTML += `<div class="message bot">${data.resposta}</div>`;
 
-    addMessage('FURIA Bot', data.resposta);
-
-    input.value = '';
-  });
-
-  function addMessage(sender, text) {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    messageElement.innerHTML = `<strong>${sender}:</strong> ${text}`;
-    chatBox.appendChild(messageElement);
-    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
-  }
-</script>
-
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll automático
+            messageInput.value = ''; // Limpa input
+        });
+    </script>
 </body>
 </html>
