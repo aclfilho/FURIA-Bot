@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>FURIA ChatBot</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css?v=2">
 </head>
 <body>
     <div class="container">
@@ -17,7 +17,7 @@
             <div class="message bot">Olá, eu sou o bot da FURIA! Como posso te ajudar hoje?</div>
         </div>
 
-        <form id="chat-form">
+        <form id="chat-form" method="POST" enctype="application/x-www-form-urlencoded">
             <input type="text" id="message" placeholder="Digite sua mensagem..." autocomplete="off" required>
             <button type="submit">Enviar</button>
         </form>
@@ -34,37 +34,43 @@
         </ul>
     </div>
 
- <!-- NOVA SEÇÃO DE PATROCINADORES -->
- <div class="sponsors-section">
-    <h2 class="sponsors-title">Patrocinadores do ChatBot:</h2>
-    
-    <div class="sponsors-grid">
-        <div class="sponsor-item">
-            <img src="static/img/adidas_logo.png" width="45" height="auto" alt="Adidas" class="sponsor-logo">
-        </div>
+    <!-- SEÇÃO DE PATROCINADORES -->
+    <div class="sponsors-section">
+        <h2 class="sponsors-title"></h2>
         
-        <div class="sponsor-item">
-            <img src="static/img/pokestars_logo.png" width="45" height="auto" alt="PokeSTARS" class="sponsor-logo">
-        </div>
-        
-        <div class="sponsor-item">
-            <img src="static/img/redbull_logo.png" width="45" height="auto" alt="Red Bull" class="sponsor-logo">
-        </div>
-        
-        <div class="sponsor-item">
-            <img src="static/img/cruzeirosul_logo.png" width="45" height="auto" alt="CRUZEIRO DO SUL VIRTUAL" class="sponsor-logo">
-        </div>
-        
-        <div class="sponsor-item">
-            <img src="static/img/hellmans_logo.png" width="45" height="auto" alt="HELLMANN'S" class="sponsor-logo">
-        </div>
-        
-        <div class="sponsor-item">
-            <img src="static/img/lenovo_logo.png" width="45" height="auto" alt="Lenovo LEGION" class="sponsor-logo">
+        <div class="sponsors-grid">
+            <div class="sponsor-item">
+                <img src="/static/img/adidas_logo.png" width="35" height="auto" alt="Adidas" class="sponsor-logo">
+            </div>
+            
+            <div class="sponsor-item">
+                <img src="/static/img/pokestars_logo.png" width="35" height="auto" alt="PokeSTARS" class="sponsor-logo">
+            </div>
+            
+            <div class="sponsor-item">
+                <img src="/static/img/redbull_logo.png" width="35" height="auto" alt="Red Bull" class="sponsor-logo">
+            </div>
+            
+            <div class="sponsor-item">
+                <img src="/static/img/cruzeirosul_logo.png" width="35" height="auto" alt="CRUZEIRO DO SUL VIRTUAL" class="sponsor-logo">
+            </div>
+            
+            <div class="sponsor-item">
+                <img src="/static/img/hellmans_logo.png" width="35" height="auto" alt="HELLMANN'S" class="sponsor-logo">
+            </div>
+            
+            <div class="sponsor-item">
+                <img src="/static/img/lenovo_logo.png" width="35" height="auto" alt="Lenovo LEGION" class="sponsor-logo">
+            </div>
         </div>
     </div>
-</div>
       
+    <footer class="footer">
+        <a href="https://furia.gg" target="_blank">Site Oficial</a> |
+        <a href="https://www.twitch.tv/furiatv" target="_blank">Twitch</a> |
+        <a href="https://loja.furia.gg" target="_blank">Loja</a>
+    </footer>
+
     <script>
         const form = document.getElementById('chat-form');
         const messageInput = document.getElementById('message');
@@ -78,27 +84,30 @@
             // Mostrar mensagem do usuário
             chatBox.innerHTML += `<div class="message user">${userMessage}</div>`;
 
-            // Enviar para o backend
-            const response = await fetch('/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `message=${encodeURIComponent(userMessage)}`
-            });
+            try {
+                // Enviar para o backend
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Accept': 'application/json'
+                    },
+                    body: `message=${encodeURIComponent(userMessage)}`
+                });
 
-            const data = await response.json();
+                if (!response.ok) {
+                    throw new Error('Erro na resposta do servidor');
+                }
 
-            // Mostrar resposta do bot
-            chatBox.innerHTML += `<div class="message bot">${data.resposta}</div>`;
+                const data = await response.json();
+                chatBox.innerHTML += `<div class="message bot">${data.resposta}</div>`;
+            } catch (error) {
+                console.error('Erro:', error);
+                chatBox.innerHTML += `<div class="message bot">Erro ao conectar com o servidor</div>`;
+            }
 
             chatBox.scrollTop = chatBox.scrollHeight; // Scroll automático
             messageInput.value = ''; // Limpa input
-
-    <footer class="footer">
-        <a href="https://furia.gg" target="_blank">Site Oficial</a> |
-        <a href="https://www.twitch.tv/furiatv" target="_blank">Twitch</a> |
-        <a href="https://loja.furia.gg" target="_blank">Loja</a>
-    </footer>
-              
         });
     </script>
 </body>
