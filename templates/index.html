@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <header class="header">
-            <img src="/static/furia_logo.png" alt="FURIA Logo" class="logo pulse-logo">
+            <img src="/static/img/furia_logo.png" alt="FURIA Logo" class="logo pulse-logo">
             <h1>FURIA ChatBot</h1>
             <p>Conecte-se com o espírito da FURIA</p>
         </header>
@@ -23,6 +23,48 @@
         </form>
     </div>
 
+    <div class="Manual">
+        <h3>Manual do ChatBot</h3>
+        <p>Digite sua mensagem no campo abaixo para interagir com o bot da FURIA.</p>
+        <p><strong>Exemplos:</strong></p>
+        <ul>
+            <li>"Quem é o capitão?"</li>
+            <li>"Qual grito da furia?"</li>
+            <li>"História da FURIA"</li>
+        </ul>
+    </div>
+
+ <!-- NOVA SEÇÃO DE PATROCINADORES -->
+ <div class="sponsors-section">
+    <h2 class="sponsors-title">Patrocinadores do ChatBot:</h2>
+    
+    <div class="sponsors-grid">
+        <div class="sponsor-item">
+            <img src="static/img/adidas_logo.png" width="45" height="auto" alt="Adidas" class="sponsor-logo">
+        </div>
+        
+        <div class="sponsor-item">
+            <img src="static/img/pokestars_logo.png" width="45" height="auto" alt="PokeSTARS" class="sponsor-logo">
+        </div>
+        
+        <div class="sponsor-item">
+            <img src="static/img/redbull_logo.png" width="45" height="auto" alt="Red Bull" class="sponsor-logo">
+        </div>
+        
+        <div class="sponsor-item">
+            <img src="static/img/cruzeirosul_logo.png" width="45" height="auto" alt="CRUZEIRO DO SUL VIRTUAL" class="sponsor-logo">
+        </div>
+        
+        <div class="sponsor-item">
+            <img src="static/img/hellmans_logo.png" width="45" height="auto" alt="HELLMANN'S" class="sponsor-logo">
+        </div>
+        
+        <div class="sponsor-item">
+            <img src="static/img/lenovo_logo.png" width="45" height="auto" alt="Lenovo LEGION" class="sponsor-logo">
+        </div>
+    </div>
+</div>
+      
     <script>
         const form = document.getElementById('chat-form');
         const messageInput = document.getElementById('message');
@@ -50,6 +92,13 @@
 
             chatBox.scrollTop = chatBox.scrollHeight; // Scroll automático
             messageInput.value = ''; // Limpa input
+
+    <footer class="footer">
+        <a href="https://furia.gg" target="_blank">Site Oficial</a> |
+        <a href="https://www.twitch.tv/furiatv" target="_blank">Twitch</a> |
+        <a href="https://loja.furia.gg" target="_blank">Loja</a>
+    </footer>
+              
         });
     </script>
 </body>

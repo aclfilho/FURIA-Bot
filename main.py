@@ -29,7 +29,7 @@ def processar_mensagem(mensagem):
     if "campeonatos" in mensagem:
         return "A FURIA está participando da IEM Katowice e outros torneios incríveis!"
     elif "time" in mensagem:
-        return "O lineup atual da FURIA é KSCERATO, yuurih, FalleN, molodoy, YEKINDAR e o treinador sidde"
+        return "O lineup atual da FURIA é KSCERATO, yuurih, FalleN, molodoy, YEKINDAR, o treinador Sidde e o novo Assistant Coach Krizzen"
     elif "canal" in mensagem:
             return "Segue o link do nosso canal oficial https://www.youtube.com/@FURIAggCS/videos"
     elif "live" in mensagem:
