@@ -1,0 +1,4 @@
+fastapi
+uvicorn
+junja2
+python-multipart
