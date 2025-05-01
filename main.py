@@ -3,31 +3,31 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-# criando a aplicação
-app = FastAPI() #instância de aplicação
 
-# Servir arquivos estáticos (CSS, imagens, etc)
+app = FastAPI() 
+
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Definindo onde estão os templates (HTML)
+
 templates = Jinja2Templates(directory="templates")
 
-# Rota inicial (carrega o HTML)
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-# Rota de resposta ao chat (agora só retorna JSON, não recarrega a página)
+
 @app.post("/chat")
 async def chat(message: str = Form(...)):
     resposta = processar_mensagem(message)
     return JSONResponse(content={"resposta": resposta})
 
-# Função para gerar resposta automática usando dicionário e sinônimos
-def processar_mensagem(mensagem):
-    mensagem = mensagem.lower()  # Deixa tudo em minúsculo para facilitar a comparação
 
-    # Dicionário com sinônimos como chave e respostas como valor
+def processar_mensagem(mensagem):
+    mensagem = mensagem.lower()  
+
+   
     respostas = {
         ("campeonato", "campeonatos", "torneio"): "A FURIA está participando da IEM Katowice e outros torneios incríveis!",
         ("time", "jogadores", "lineup"): "O lineup atual da FURIA é KSCERATO, yuurih, FalleN, molodoy, YEKINDAR, o treinador Sidde e o novo Assistant Coach Krizzen.",
@@ -40,10 +40,10 @@ def processar_mensagem(mensagem):
         ("troll", "zueira", "eco round"): "A FURIA tava jogando no modo freestyle e, num eco round, todos foram de USP pra cima da Liquid e quase roubaram o round! KKK"
     }
 
-    # Busca por palavra-chave dentro da mensagem
+ 
     for palavras_chave, resposta in respostas.items():
         if any(palavra in mensagem for palavra in palavras_chave):
             return resposta
 
-    # Caso nenhuma palavra seja encontrada
+    
     return "Desculpe, não entendi sua pergunta. Tente perguntar sobre campeonatos, time, loja ou live!"
