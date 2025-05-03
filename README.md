@@ -5,14 +5,13 @@ FURIA Fan ChatBot
 - Chat em tempo real com respostas temáticas sobre a FURIA.
 - Informações sobre lineup, campeonatos, transmissões e muito mais.
 - Interface com identidade visual inspirada na FURIA.
-- Layout ajustado com chatbot fixado no canto inferior direito e lore no canto superior.
 - Backend desenvolvido com **FastAPI**.
 - Frontend leve com HTML e CSS puro.
 
 ---
 
 ## Estrutura do Projeto
-
+```bash
 furia-chatbot/ 
 ├── main.py # Backend com FastAPI 
 ├── requirements.txt # Dependências do projeto 

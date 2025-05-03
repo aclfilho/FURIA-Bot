@@ -171,3 +171,46 @@ button:hover {
     text-decoration: underline;
 }
 
+
+/* Estilos para a landing page */
+.conteudo {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left; /* Alinha todo o conteúdo à esquerda */
+}
+
+.botao-container {
+    text-align: left; /* Alinha especificamente o botão à esquerda */
+    margin-top: 20px;
+}
+
+.botao {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #FF5700; /* Laranja da FURIA */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.botao:hover {
+    background-color: #E04B00; /* Tom mais escuro para hover */
+}
+
+.header-subtext {
+    position: fixed; /* Posicionamento fixo na janela */
+    top: 53px; /* 20px (header) + 32px (tamanho aproximado do texto) + 1px */
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+
+
+
+
+}

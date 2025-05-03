@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>FURIA Bot - Landing Page</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('/static/imagem-fundo.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+            color: white; /* Adicionado para melhor contraste */
+        }
+
+        header {
+            position: absolute;
+            top: 20px;
+            left: 2%;
+            right: 2%;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* Sombra para melhor legibilidade */
+        }
+
+        .botao-invisivel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            pointer-events: auto;
+            background: none;
+            border: none;
+            padding: 130px 200px;
+            cursor: pointer;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            left: 2%;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>Bem-vindo ao Assistente Virtual da FURIA</header>
+    <div class="header-subtext">Clique no escudo da FURIA e saiba mais</div>
+    
+    
+
+    <a href="/chatbot" class="botao-invisivel">Começar Chat</a>
+    <footer>FURIA Esports &copy; 2025</footer>
+</body>
+</html>

@@ -28,13 +28,13 @@
         <p>Digite sua mensagem no campo abaixo para interagir com o bot da FURIA.</p>
         <p><strong>Exemplos:</strong></p>
         <ul>
-            <li>"Quem é o capitão?"</li>
+            <li>"Qual a loja da furia?"</li>
             <li>"Qual grito da furia?"</li>
             <li>"História da FURIA"</li>
         </ul>
     </div>
 
-    <!-- SEÇÃO DE PATROCINADORES -->
+    
     <div class="sponsors-section">
         <h2 class="sponsors-title"></h2>
         
@@ -81,11 +81,11 @@
             const userMessage = messageInput.value.trim();
             if (!userMessage) return;
 
-            // Mostrar mensagem do usuário
+            
             chatBox.innerHTML += `<div class="message user">${userMessage}</div>`;
 
             try {
-                // Enviar para o backend
+                
                 const response = await fetch('/chat', {
                     method: 'POST',
                     headers: { 
@@ -106,9 +106,10 @@
                 chatBox.innerHTML += `<div class="message bot">Erro ao conectar com o servidor</div>`;
             }
 
-            chatBox.scrollTop = chatBox.scrollHeight; // Scroll automático
-            messageInput.value = ''; // Limpa input
+            chatBox.scrollTop = chatBox.scrollHeight; 
+            messageInput.value = ''; 
         });
     </script>
 </body>
 </html>
+
