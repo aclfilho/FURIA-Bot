@@ -8,27 +8,27 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-# Configurações
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-# Rota principal - Landing Page
+
 @app.get("/", response_class=HTMLResponse)
 async def landing_page(request: Request):
     return templates.TemplateResponse("landing.html", {"request": request})
 
-# Rota para a página do chatbot
+
 @app.get("/chatbot", response_class=HTMLResponse)
 async def chat_page(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-# Rota para processar as mensagens do chat
+
 @app.post("/api/chat")
 async def chat(message: str = Form(...)):
     resposta = processar_mensagem(message)
     return JSONResponse(content={"resposta": resposta})
 
-# Função de processamento de mensagens
+
 def processar_mensagem(mensagem):
     mensagem = mensagem.lower()
 
